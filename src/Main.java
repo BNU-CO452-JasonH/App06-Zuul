@@ -1,5 +1,5 @@
 /**
- * Based on the Collosal Cave Adventure game
+ * Based on the Colossal Cave Adventure game
  */
 public class Main
 {
