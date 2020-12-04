@@ -14,13 +14,15 @@
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
  * 
- * Modified and extended by Derek and Andrei
+ * Originally modified and extended by Derek and Andrei
+ * Modified by Jason Huggins (dated: 04/12/2020)
  */
 
 public class Game 
 {
     private Parser parser;
     private Room currentRoom;
+    private Map map;
         
     /**
      * Create the game and initialise its internal map.
@@ -28,7 +30,8 @@ public class Game
     public Game() 
     {
         parser = new Parser();
-        createRooms();
+        map = new Map();
+        currentRoom = map.getStartRoom();
         play();
     }
 
