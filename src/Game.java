@@ -15,7 +15,7 @@
  * @version 2016.02.29
  * 
  * Originally modified and extended by Derek and Andrei
- * Modified by Jason Huggins (dated: 04/12/2020)
+ * Modified by Jason Huggins (dated: 10/12/2020)
  */
 
 public class Game 
@@ -23,7 +23,8 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     private Map map;
-        
+    private Player player;
+
     /**
      * Create the game and initialise its internal map.
      */
@@ -127,6 +128,18 @@ public class Game
 
             case QUIT:
                 wantToQuit = quit(command);
+                break;
+
+            case TAKE:
+                // add function here
+                break;
+
+            case DROP:
+                // add function here
+                break;
+
+            case ITEMS:
+                // add function here
                 break;
         }
         return wantToQuit;
