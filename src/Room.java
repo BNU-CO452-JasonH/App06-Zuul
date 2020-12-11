@@ -52,15 +52,6 @@ public class Room
     }
 
     /**
-     * @return The short description of the room
-     * (the one that was defined in the constructor).
-     */
-    public String getShortDescription()
-    {
-        return description;
-    }
-
-    /**
      * Return a description of the room in the form:
      *     You are in the kitchen.
      *     Exits: north west
@@ -68,7 +59,7 @@ public class Room
      */
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString();
+        return "You are " + name + " " + description + ".\n" + getExitString();
     }
 
     /**
@@ -131,6 +122,14 @@ public class Room
     public String getName()
     {
         return name;
+    }
+
+    /**
+     * Prints a list of items inside the room.
+     */
+    public void printItems()
+    {
+        System.out.println("Items in this room: " + item);
     }
 }
 
