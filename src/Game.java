@@ -113,7 +113,7 @@ public class Game
                 break;
 
             case ITEMS:
-                // add function here
+                System.out.println("Items in your inventory: " + player.getInventory());
                 break;
         }
         return wantToQuit;
