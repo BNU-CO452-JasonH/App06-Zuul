@@ -6,6 +6,6 @@
  */
 public enum Items
 {
-    // readjust to fit with the game's context
+    // The items present in the game.
     NONE, WATER, BACKPACK, KEY, WATCH, COIN, NOTEPAD
 }
