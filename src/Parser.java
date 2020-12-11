@@ -42,7 +42,8 @@ public class Parser
 
         System.out.print("> ");     // print prompt
 
-        inputLine = reader.nextLine().toLowerCase(); // converts all user input to lowercase
+        inputLine = reader.nextLine();
+        inputLine = inputLine.toLowerCase(); // converts all user input to lowercase
 
         // Find up to two words on the line.
         Scanner tokenizer = new Scanner(inputLine);
