@@ -99,6 +99,10 @@ public class Game
                 wantToQuit = quit(command);
                 break;
 
+            case LOOK:
+                printItems();
+                break;
+
             case TAKE:
                 // add function here
                 break;
@@ -155,6 +159,14 @@ public class Game
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
         }
+    }
+
+    /**
+     * Prints a list of items inside the room the player is currently in.
+     */
+    private void printItems()
+    {
+        currentRoom.printItems();
     }
 
     /** 
