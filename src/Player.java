@@ -1,28 +1,33 @@
-import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * The Player class stores information about the player of the Zuul game, including their energy level, score and items
  * in possession.
  *
  * @author Jason Huggins
- * @version 10/12/2020
+ * @version 11/12/2020
  */
 public class Player
 {
+    // Constants
+    public static final int MAX_ENERGY = 100;
+    public static final int WIN_SCORE = 1000;
+
+    // Fields/attributes
+    private String name;
     private int energy;
     private int score;
+    private ArrayList<Items> inventory;
     private Room currentRoom;
-    private HashMap<String, Integer> items;
-    private int maxWeight;
 
     /**
      * Constructor for a Player object.
      */
-    public Player()
+    public Player(String name)
     {
-        energy = 100;
+        this.name = name;
+        energy = MAX_ENERGY;
         score = 0;
-        items = new HashMap<>();
-        maxWeight = 1500;
+        inventory = new ArrayList<>();
     }
 }
