@@ -15,14 +15,14 @@
  * @version 2016.02.29
  * 
  * Originally modified and extended by Derek and Andrei
- * Modified by Jason Huggins (dated: 10/12/2020)
+ * Modified by Jason Huggins (dated: 11/12/2020)
  */
 
 public class Game 
 {
+    private Map map;
     private Parser parser;
     private Room currentRoom;
-    private Map map;
     private Player player;
 
     /**
