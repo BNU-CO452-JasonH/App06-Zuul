@@ -2,7 +2,7 @@
  * The Map class stores an interconnected set of rooms used for the Zuul game.
  *
  * @author Jason Huggins
- * @version 04/12/2020
+ * @version 11/12/2020
  */
 public class Map
 {
@@ -24,11 +24,11 @@ public class Map
         Room outside, theater, pub, lab, office;
 
         // create the rooms
-        outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        outside = new Room(01, "outside the main entrance of the university", Items.BACKPACK);
+        theater = new Room(02, "in a lecture theater", Items.COIN);
+        pub = new Room(03,"in the campus pub", Items.WATCH);
+        lab = new Room(04,"in a computing lab", Items.NOTEPAD);
+        office = new Room(05, "in the computing admin office", Items.WATER);
 
         // initialise room exits
         outside.setExit("east", theater);
