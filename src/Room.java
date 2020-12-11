@@ -14,24 +14,30 @@ import java.util.Iterator;
  * 
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
+ * Modified by Jason Huggins (dated 11/12/2020)
  */
 
 public class Room 
 {
+    private Items item;
+    private int id;
+    private String name;
     private String description;
     // String is the key to a room in that direction
     // east would be an exit that goes to the Room
     private HashMap<String, Room> exits;
 
     /**
-     * Create a room described "description". Initially, it has
-     * no exits. "description" is something like "a kitchen" or
-     * "an open court yard".
-     * @param description The room's description.
+     * Creates a room with a given ID, name and item it contains.
+     * @param id The ID of the room.
+     * @param name The name of the room.
+     * @param item The item inside the room.
      */
-    public Room(String description) 
+    public Room(int id, String name, Items item)
     {
-        this.description = description;
+        this.id = id;
+        this.name = name;
+        this.item = item;
         exits = new HashMap<>();
     }
 
@@ -91,6 +97,40 @@ public class Room
     public Room getExit(String direction) 
     {
         return exits.get(direction);
+    }
+
+    /**
+     * Sets the description of the room.
+     * @param description The room's description.
+     */
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
+
+    /**
+     * Sets the item found inside the room.
+     * @param item The item in the room.
+     */
+    public void setItem(Items item)
+    {
+        this.item = item;
+    }
+
+    /**
+     * @return The item inside the room.
+     */
+    public Items getItem()
+    {
+        return item;
+    }
+
+    /**
+     * @return The name of the room.
+     */
+    public String getName()
+    {
+        return name;
     }
 }
 
