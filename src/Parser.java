@@ -15,6 +15,7 @@ import java.util.Scanner;
  * 
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
+ * Modified by Jason Huggins (dated 11/12/2020)
  */
 public class Parser 
 {
@@ -41,7 +42,7 @@ public class Parser
 
         System.out.print("> ");     // print prompt
 
-        inputLine = reader.nextLine();
+        inputLine = reader.nextLine().toLowerCase(); // converts all user input to lowercase
 
         // Find up to two words on the line.
         Scanner tokenizer = new Scanner(inputLine);
