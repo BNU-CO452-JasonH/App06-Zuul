@@ -33,6 +33,7 @@ public class Game
         parser = new Parser();
         map = new Map();
         currentRoom = map.getStartRoom();
+        player = new Player("Jason");
         play();
     }
 
