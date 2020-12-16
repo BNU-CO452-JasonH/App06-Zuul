@@ -15,7 +15,7 @@
  * @version 2016.02.29
  * 
  * Originally modified and extended by Derek and Andrei
- * Modified by Jason Huggins (dated: 11/12/2020)
+ * Modified by Jason Huggins (dated: 16/12/2020)
  */
 
 public class Game 
@@ -105,7 +105,7 @@ public class Game
                 break;
 
             case TAKE:
-                // add function here
+                takeItem(command);
                 break;
 
             case DROP:
@@ -168,6 +168,49 @@ public class Game
     private void printItems()
     {
         currentRoom.printItems();
+    }
+
+    /**
+     * Pick up an item in the current room and store in inventory.
+     */
+    private void takeItem(Command command)
+    {
+        // if there is no second word, don't know what item to take.
+        if (!command.hasSecondWord())
+        {
+            System.out.println("Take what?");
+            return;
+        }
+
+        String itemName = command.getSecondWord().toUpperCase();
+        Items roomItem = currentRoom.getItem();
+
+        // if the item in the current room matches the name given by the user, pick the item up.
+        if (roomItem.toString().equals(itemName))
+        {
+            player.take(roomItem);
+        }
+        else
+        {
+            System.out.println("Invalid choice. This item does not exist in this room.");
+        }
+    }
+
+    /**
+     * Drop an item stored in the player's inventory.
+     */
+    private void dropItem(Command command)
+    {
+        // if there is no second word, don't know what item to drop.
+        if (!command.hasSecondWord())
+        {
+            System.out.println("Drop what?");
+            return;
+        }
+
+        String itemName = command.getSecondWord().toUpperCase();
+
+        // stuck - needs finishing
     }
 
     /** 
