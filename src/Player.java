@@ -101,7 +101,7 @@ public class Player
      * Picks up an item in the current room and stores it in the player's inventory.
      * @param item The item to be picked up by the player.
      */
-    public void takeItem(Items item)
+    public void take(Items item)
     {
         inventory.add(item);
     }
@@ -110,7 +110,7 @@ public class Player
      * Drops an item stored in the player's inventory.
      * @param item The item to be dropped by the player.
      */
-    public void dropItem(Items item)
+    public void drop(Items item)
     {
         if (!inventory.contains(item))
         {
