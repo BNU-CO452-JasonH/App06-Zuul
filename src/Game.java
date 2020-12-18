@@ -49,7 +49,7 @@ public class Game
                 
         boolean finished = false;
         
-        while (! finished) 
+        while (!finished)
         {
             Command command = parser.getCommand();
             finished = processCommand(command);
@@ -68,6 +68,7 @@ public class Game
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
+        player.printStatus();
         System.out.println(currentRoom.getLongDescription());
     }
 
@@ -82,7 +83,7 @@ public class Game
 
         CommandWord commandWord = command.getCommandWord();
 
-        switch (commandWord) 
+        switch (commandWord)
         {
             case UNKNOWN:
                 System.out.println("I don't know what you mean...");
@@ -115,7 +116,12 @@ public class Game
             case ITEMS:
                 System.out.println("Items in your inventory: " + player.getInventory());
                 break;
+
+            case STATUS:
+                player.printStatus();
+                break;
         }
+
         return wantToQuit;
     }
 
@@ -123,8 +129,8 @@ public class Game
 
     /**
      * Print out some help information.
-     * Here we print some stupid, cryptic message and a list of the 
-     * command words.
+     * A cryptic message is printed, as well as a list of commands and instructions on how to play
+     * the game.
      */
     private void printHelp() 
     {
@@ -133,6 +139,11 @@ public class Game
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
+        System.out.println("\nYour energy level will decrease by 5 each time you go into a room.");
+        System.out.println("If your energy level reaches 0, you can no longer proceed and the game will end.");
+        System.out.println("However, you can increase energy after picking up snacks/drinks you find (e.g. water).");
+        System.out.println("\nPicking up certain items will increase your score.");
+        System.out.println("Should you reach the score of 200 points, you will complete the game.");
     }
 
     /** 
@@ -161,7 +172,7 @@ public class Game
         {
             currentRoom = nextRoom;
             player.decreaseEnergy(5);
-            player.printStatus();
+            System.out.println("Energy level decreased by 5. Energy remaining: " + player.getEnergy());
             System.out.println(currentRoom.getLongDescription());
         }
     }
@@ -174,6 +185,7 @@ public class Game
         currentRoom.printItems();
     }
 
+    // TODO: Add functionality for specific items to increase score and energy level.
     /**
      * Pick up an item in the current room and store in inventory.
      */
@@ -232,6 +244,8 @@ public class Game
         }
     }
 
+    // TODO: Add methods when the player wins or loses in the game.
+
     /** 
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
@@ -239,11 +253,13 @@ public class Game
      */
     private boolean quit(Command command) 
     {
-        if(command.hasSecondWord()) {
+        if (command.hasSecondWord())
+        {
             System.out.println("Quit what?");
             return false;
         }
-        else {
+        else
+        {
             return true;  // signal that we want to quit
         }
     }
