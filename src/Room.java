@@ -14,7 +14,7 @@ import java.util.Iterator;
  * 
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
- * Modified by Jason Huggins (dated 11/12/2020)
+ * Modified by Jason Huggins (dated 18/12/2020)
  */
 
 public class Room 
@@ -122,6 +122,15 @@ public class Room
     public String getName()
     {
         return name;
+    }
+
+
+    /**
+     *
+     */
+    public void removeItem()
+    {
+        item = Items.NONE;
     }
 
     /**
