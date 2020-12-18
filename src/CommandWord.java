@@ -4,7 +4,7 @@
  * 
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
- * Modified by Jason Huggins (dated 11/12/2020)
+ * Modified by Jason Huggins (dated 18/12/2020)
  */
 public enum CommandWord
 {
@@ -13,7 +13,8 @@ public enum CommandWord
     GO("go"), QUIT("quit"),
     HELP("help"), LOOK("look"),
     TAKE("take"), DROP("drop"),
-    ITEMS("items"), UNKNOWN("?");
+    ITEMS("items"), STATUS("status"),
+    UNKNOWN("?");
     
     // The command string.
     private String commandString;
