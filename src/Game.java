@@ -15,7 +15,7 @@
  * @version 2016.02.29
  * 
  * Originally modified and extended by Derek and Andrei
- * Modified by Jason Huggins (dated: 16/12/2020)
+ * Modified by Jason Huggins (dated: 18/12/2020)
  */
 
 public class Game 
@@ -109,7 +109,7 @@ public class Game
                 break;
 
             case DROP:
-                // add function here
+                dropItem(command);
                 break;
 
             case ITEMS:
@@ -153,11 +153,15 @@ public class Game
         // Try to leave current room.
         Room nextRoom = currentRoom.getExit(direction);
 
-        if (nextRoom == null) {
+        if (nextRoom == null)
+        {
             System.out.println("There is no door!");
         }
-        else {
+        else
+        {
             currentRoom = nextRoom;
+            player.decreaseEnergy(5);
+            player.printStatus();
             System.out.println(currentRoom.getLongDescription());
         }
     }
@@ -188,7 +192,10 @@ public class Game
         // if the item in the current room matches the name given by the user, pick the item up.
         if (roomItem.toString().equals(itemName))
         {
+            System.out.println("Item picked up: " + roomItem);
             player.take(roomItem);
+            currentRoom.removeItem();
+            // black box test - pick up item twice
         }
         else
         {
@@ -201,16 +208,28 @@ public class Game
      */
     private void dropItem(Command command)
     {
+        String itemName = command.getSecondWord().toUpperCase();
+
         // if there is no second word, don't know what item to drop.
         if (!command.hasSecondWord())
         {
             System.out.println("Drop what?");
-            return;
         }
+        else
+        {
+            Items item = player.findItem(itemName);
 
-        String itemName = command.getSecondWord().toUpperCase();
-
-        // stuck - needs finishing
+            if (item != Items.NONE)
+            {
+                System.out.println("Item dropped: " + item);
+                player.removeItem(item);
+                currentRoom.setItem(item);
+            }
+            else
+            {
+                System.out.println("Don't recognise that item.");
+            }
+        }
     }
 
     /** 
