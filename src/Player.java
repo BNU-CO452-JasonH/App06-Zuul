@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * in possession.
  *
  * @author Jason Huggins
- * @version 16/12/2020
+ * @version 18/12/2020
  */
 public class Player
 {
@@ -71,6 +71,33 @@ public class Player
     }
 
     /**
+     *
+     * @param target
+     * @return
+     */
+    public Items findItem(String target)
+    {
+        for (Items item : inventory)
+        {
+            if (item.toString().equals(target))
+            {
+                return item;
+            }
+        }
+
+        return Items.NONE;
+    }
+
+    /**
+     *
+     * @param item
+     */
+    public void removeItem(Items item)
+    {
+        inventory.remove(item);
+    }
+
+    /**
      * Changes the player's current name to another name.
      * @param name The new name for the player.
      */
@@ -81,11 +108,20 @@ public class Player
 
     /**
      * Changes the player's energy level to a given amount.
-     * @param energy The amount to set the player's energy level to.
+     * @param amount The amount to set the player's energy level to.
      */
-    public void setEnergy(int energy)
+    public void increaseEnergy(int amount)
     {
-        this.energy = energy;
+        this.energy += amount;
+    }
+
+    /**
+     *
+     * @param amount
+     */
+    public void decreaseEnergy(int amount)
+    {
+        this.energy -= amount;
     }
 
     /**
@@ -103,6 +139,7 @@ public class Player
      */
     public void take(Items item)
     {
+        System.out.println();
         inventory.add(item);
     }
 
@@ -121,5 +158,16 @@ public class Player
             System.out.println("The following item has been dropped: " + item);
             inventory.remove(item);
         }
+    }
+
+    // TODO: Add instructions for player here
+    /**
+     *
+     */
+    public void printStatus()
+    {
+        System.out.println("\nName: " + name);
+        System.out.println("Score: " + score);
+        System.out.println("Energy: " + energy + "\n");
     }
 }
