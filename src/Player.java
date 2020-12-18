@@ -11,7 +11,7 @@ public class Player
 {
     // Constants
     public static final int MAX_ENERGY = 100;
-    public static final int WIN_SCORE = 1000;
+    public static final int WIN_SCORE = 200;
 
     // Fields/attributes
     private String name;
@@ -71,9 +71,9 @@ public class Player
     }
 
     /**
-     *
-     * @param target
-     * @return
+     * Finds an item in the player's inventory based on an inputted string by the user.
+     * @param target The item name inputted by the user to be found.
+     * @return The item stored in inventory if it matches the inputted name or none otherwise.
      */
     public Items findItem(String target)
     {
@@ -89,8 +89,8 @@ public class Player
     }
 
     /**
-     *
-     * @param item
+     * Removes an item from the player's inventory (e.g. when they drop it in the game).
+     * @param item The item stored in inventory to be removed.
      */
     public void removeItem(Items item)
     {
@@ -107,8 +107,8 @@ public class Player
     }
 
     /**
-     * Changes the player's energy level to a given amount.
-     * @param amount The amount to set the player's energy level to.
+     * Increases the player's energy level by a given amount.
+     * @param amount The amount to increase the player's energy level by.
      */
     public void increaseEnergy(int amount)
     {
@@ -116,8 +116,8 @@ public class Player
     }
 
     /**
-     *
-     * @param amount
+     * Decreases the player's energy level by a given amount.
+     * @param amount The amount to decrease the player's energy level by.
      */
     public void decreaseEnergy(int amount)
     {
@@ -160,13 +160,14 @@ public class Player
         }
     }
 
-    // TODO: Add instructions for player here
     /**
-     *
+     * Prints the status of the player including their name, current score, energy level
+     * as well as instructions on their score and energy level changes.
      */
     public void printStatus()
     {
-        System.out.println("\nName: " + name);
+        System.out.println("\nCurrent Status");
+        System.out.println("Name: " + name);
         System.out.println("Score: " + score);
         System.out.println("Energy: " + energy + "\n");
     }
