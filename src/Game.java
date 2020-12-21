@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -15,7 +17,7 @@
  * @version 2016.02.29
  * 
  * Originally modified and extended by Derek and Andrei
- * Modified by Jason Huggins (dated: 18/12/2020)
+ * Modified by Jason Huggins (dated: 21/12/2020)
  */
 
 public class Game 
@@ -24,6 +26,8 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     private Player player;
+    private HashMap<Items, Integer> consumables;
+    private HashMap<Items, Integer> valuables;
 
     /**
      * Create the game and initialise its internal map.
@@ -34,6 +38,15 @@ public class Game
         map = new Map();
         currentRoom = map.getStartRoom();
         player = new Player("Jason");
+        consumables = new HashMap<>();
+        valuables = new HashMap<>();
+
+        // TODO: Put more items into the hashmaps below after adding them to the enum.
+        // Initialising items with values (taking consumables will increase energy, valuables will increase score).
+        consumables.put(Items.WATER, 15);
+        valuables.put(Items.KEY, 50);
+        valuables.put(Items.WATCH, 30);
+        
         play();
     }
 
@@ -41,7 +54,7 @@ public class Game
      *  Main play routine.  Loops until end of play.
      */
     public void play() 
-    {            
+    {
         printWelcome();
 
         // Enter the main command loop.  Here we repeatedly read commands and
