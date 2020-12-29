@@ -17,7 +17,7 @@ import java.util.HashMap;
  * @version 2016.02.29
  * 
  * Originally modified and extended by Derek and Andrei
- * Modified by Jason Huggins (dated: 21/12/2020)
+ * Modified by Jason Huggins (dated: 29/12/2020)
  */
 
 public class Game 
@@ -44,9 +44,16 @@ public class Game
         // TODO: Put more items into the hashmaps below after adding them to the enum.
         // Initialising items with values (taking consumables will increase energy, valuables will increase score).
         consumables.put(Items.WATER, 15);
+        consumables.put(Items.COLA, 15);
+        consumables.put(Items.ENERGY_BAR, 25);
+        consumables.put(Items.BISCUIT, 10);
+
         valuables.put(Items.KEY, 50);
         valuables.put(Items.WATCH, 30);
-        
+        valuables.put(Items.NECKLACE, 40);
+        valuables.put(Items.ID_CARD, 25);
+        valuables.put(Items.PHONE, 45);
+
         play();
     }
 
@@ -66,9 +73,26 @@ public class Game
         {
             Command command = parser.getCommand();
             finished = processCommand(command);
+
+            // If the player's score reaches or exceeds the winning score threshold, they have won.
+            if (player.getScore() >= Player.WIN_SCORE)
+            {
+                System.out.println("Congratulations! You have successfully beaten the game.");
+                System.out.println("Your final player status for this session will be shown below.");
+                player.printStatus();
+                finished = true;
+            }
+            // If the player's energy level drops to 0, they have lost.
+            else if (player.getEnergy() <= 0)
+            {
+                System.out.println("You have run out of energy and can't proceed any further.");
+                System.out.println("Because of this, you have unfortunately lost and the game has ended.");
+                System.out.println("Better luck next time!");
+                finished = true;
+            }
         }
         
-        System.out.println("Thank you for playing.  Good bye.");
+        System.out.println("The game has now been exited. Thank you for playing! Goodbye!");
     }
 
     /**
@@ -198,7 +222,6 @@ public class Game
         currentRoom.printItems();
     }
 
-    // TODO: Add functionality for specific items to increase score and energy level.
     /**
      * Pick up an item in the current room and store in inventory.
      */
@@ -214,10 +237,22 @@ public class Game
         String itemName = command.getSecondWord().toUpperCase();
         Items roomItem = currentRoom.getItem();
 
-        // if the item in the current room matches the name given by the user, pick the item up.
+        // If the item in the current room matches the name given by the user, pick it up.
         if (roomItem.toString().equals(itemName))
         {
             System.out.println("Item picked up: " + roomItem);
+
+            // If the item picked up is a consumable, increase the player's energy level.
+            if (consumables.containsKey(roomItem))
+            {
+                player.increaseEnergy(consumables.get(roomItem));
+            }
+            // Else if the item picked up is a valuable, increase the player's score.
+            else if (valuables.containsKey(roomItem))
+            {
+                player.increaseScore(valuables.get(roomItem));
+            }
+
             player.take(roomItem);
             currentRoom.removeItem();
             // black box test - pick up item twice
@@ -256,8 +291,6 @@ public class Game
             }
         }
     }
-
-    // TODO: Add methods when the player wins or loses in the game.
 
     /** 
      * "Quit" was entered. Check the rest of the command to see
