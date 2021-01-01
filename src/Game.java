@@ -246,11 +246,15 @@ public class Game
             if (consumables.containsKey(roomItem))
             {
                 player.increaseEnergy(consumables.get(roomItem));
+                System.out.println("Energy increased by " + consumables.get(roomItem)
+                        + ". Energy remaining: " + player.getEnergy());
             }
             // Else if the item picked up is a valuable, increase the player's score.
             else if (valuables.containsKey(roomItem))
             {
                 player.increaseScore(valuables.get(roomItem));
+                System.out.println("Score increased by " + valuables.get(roomItem)
+                        + ". Current score: " + player.getScore());
             }
 
             player.take(roomItem);
