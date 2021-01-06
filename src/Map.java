@@ -2,7 +2,7 @@
  * The Map class stores an interconnected set of rooms used for the Zuul game.
  *
  * @author Jason Huggins
- * @version 01/01/2021
+ * @version 06/01/2021
  */
 public class Map
 {
@@ -34,7 +34,8 @@ public class Map
         field = new Room(7, "field", Items.NONE);
         shop = new Room(8, "shop", Items.KEY);
         studio = new Room(9, "studio", Items.PHONE);
-        classroom = new Room(10, "classroom", Items.ID_CARD);
+        // classroom is initially locked, requires item "Key" to unlock
+        classroom = new Room(10, "lockedClassroom", Items.ID_CARD);
         bathroom = new Room(11, "bathroom", Items.NONE);
         gym = new Room(12, "gym", Items.ENERGY_BAR);
         reception = new Room(13, "reception", Items.COLA);
