@@ -17,7 +17,7 @@ import java.util.HashMap;
  * @version 2016.02.29
  * 
  * Originally modified and extended by Derek and Andrei
- * Modified by Jason Huggins (dated: 01/01/2021)
+ * Modified by Jason Huggins (dated: 06/01/2021)
  */
 
 public class Game 
@@ -200,13 +200,27 @@ public class Game
 
         // Try to leave current room.
         Room nextRoom = currentRoom.getExit(direction);
+        // Flag if the next room is locked (the classroom).
+        boolean isLocked = nextRoom.getName().equals("lockedClassroom");
+        Items keyItem = player.findItem("KEY");
 
         if (nextRoom == null)
         {
             System.out.println("There is no door!");
         }
+        // If the next room is locked and the player doesn't have a key in their inventory, they can't proceed.
+        else if ((isLocked) && (keyItem == Items.NONE))
+        {
+            System.out.println("The door to the classroom is locked. You need a key in your inventory to open it.");
+        }
         else
         {
+            // If the next room (i.e. the classroom) is locked but the player has a key, they can unlock it.
+            if (isLocked)
+            {
+                System.out.println("You use the key to unlock the classroom door.");
+            }
+
             currentRoom = nextRoom;
             player.decreaseEnergy(5);
             System.out.println("Energy level decreased by 5. Energy remaining: " + player.getEnergy());
