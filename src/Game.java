@@ -17,7 +17,7 @@ import java.util.HashMap;
  * @version 2016.02.29
  * 
  * Originally modified and extended by Derek and Andrei
- * Modified by Jason Huggins (dated: 06/01/2021)
+ * Modified by Jason Huggins (dated: 14/01/2021)
  */
 
 public class Game 
@@ -43,14 +43,14 @@ public class Game
 
         // TODO: Put more items into the hashmaps below after adding them to the enum.
         // Initialising items with values (taking consumables will increase energy, valuables will increase score).
-        consumables.put(Items.WATER, 15);
-        consumables.put(Items.COLA, 15);
-        consumables.put(Items.ENERGY_BAR, 25);
-        consumables.put(Items.BISCUIT, 10);
+        consumables.put(Items.WATER, 25);
+        consumables.put(Items.COLA, 25);
+        consumables.put(Items.ENERGY_BAR, 50);
+        consumables.put(Items.BISCUIT, 20);
 
         valuables.put(Items.KEY, 50);
-        valuables.put(Items.WATCH, 30);
-        valuables.put(Items.NECKLACE, 40);
+        valuables.put(Items.WATCH, 35);
+        valuables.put(Items.NECKLACE, 45);
         valuables.put(Items.ID_CARD, 25);
         valuables.put(Items.PHONE, 45);
 
@@ -222,8 +222,8 @@ public class Game
             }
 
             currentRoom = nextRoom;
-            player.decreaseEnergy(5);
-            System.out.println("Energy level decreased by 5. Energy remaining: " + player.getEnergy());
+            player.decreaseEnergy(10);
+            System.out.println("Energy level decreased by 10. Energy remaining: " + player.getEnergy());
             System.out.println(currentRoom.getLongDescription());
         }
     }
