@@ -45,13 +45,13 @@ public class Game
         // Initialising items with values (taking consumables will increase energy, valuables will increase score).
         consumables.put(Items.WATER, 25);
         consumables.put(Items.COLA, 25);
-        consumables.put(Items.ENERGY_BAR, 50);
+        consumables.put(Items.ENERGYBAR, 50);
         consumables.put(Items.BISCUIT, 20);
 
         valuables.put(Items.KEY, 50);
         valuables.put(Items.WATCH, 35);
         valuables.put(Items.NECKLACE, 45);
-        valuables.put(Items.ID_CARD, 25);
+        valuables.put(Items.IDCARD, 25);
         valuables.put(Items.PHONE, 45);
 
         play();
