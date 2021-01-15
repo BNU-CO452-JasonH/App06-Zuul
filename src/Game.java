@@ -17,7 +17,7 @@ import java.util.HashMap;
  * @version 2016.02.29
  * 
  * Originally modified and extended by Derek and Andrei
- * Modified by Jason Huggins (dated: 14/01/2021)
+ * Modified by Jason Huggins (dated: 15/01/2021)
  */
 
 public class Game 
@@ -41,7 +41,6 @@ public class Game
         consumables = new HashMap<>();
         valuables = new HashMap<>();
 
-        // TODO: Put more items into the hashmaps below after adding them to the enum.
         // Initialising items with values (taking consumables will increase energy, valuables will increase score).
         consumables.put(Items.WATER, 25);
         consumables.put(Items.COLA, 25);
@@ -95,6 +94,7 @@ public class Game
         System.out.println("The game has now been exited. Thank you for playing! Goodbye!");
     }
 
+    // TODO: Change the introductory message so it actually introduces the game, rather saying it's just boring.
     /**
      * Print out the opening message for the player.
      */
