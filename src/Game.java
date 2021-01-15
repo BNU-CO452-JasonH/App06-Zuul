@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -189,10 +190,23 @@ public class Game
      */
     private void goRoom(Command command) 
     {
-        if(!command.hasSecondWord()) 
+        // Used to check if the directions entered by the user are valid.
+        ArrayList<String> validDirections = new ArrayList<>();
+        validDirections.add("north");
+        validDirections.add("south");
+        validDirections.add("east");
+        validDirections.add("west");
+
+        if (!command.hasSecondWord())
         {
             // if there is no second word, we don't know where to go...
             System.out.println("Go where?");
+            return;
+        }
+        else if (!validDirections.contains(command.getSecondWord()))
+        {
+            // If the direction entered is invalid, an error message will be displayed.
+            System.out.println("Invalid direction entered. Please try again.");
             return;
         }
 
@@ -286,27 +300,25 @@ public class Game
      */
     private void dropItem(Command command)
     {
-        String itemName = command.getSecondWord().toUpperCase();
-
         // if there is no second word, don't know what item to drop.
         if (!command.hasSecondWord())
         {
             System.out.println("Drop what?");
+            return;
+        }
+
+        String itemName = command.getSecondWord().toUpperCase();
+        Items item = player.findItem(itemName);
+
+        if (item != Items.NONE)
+        {
+            System.out.println("Item dropped: " + item);
+            player.removeItem(item);
+            currentRoom.setItem(item);
         }
         else
         {
-            Items item = player.findItem(itemName);
-
-            if (item != Items.NONE)
-            {
-                System.out.println("Item dropped: " + item);
-                player.removeItem(item);
-                currentRoom.setItem(item);
-            }
-            else
-            {
-                System.out.println("Don't recognise that item.");
-            }
+            System.out.println("Don't recognise that item.");
         }
     }
 
