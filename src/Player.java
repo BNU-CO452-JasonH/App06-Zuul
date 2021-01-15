@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * in possession.
  *
  * @author Jason Huggins
- * @version 29/12/2020
+ * @version 15/01/2021
  */
 public class Player
 {
@@ -122,6 +122,15 @@ public class Player
     public void decreaseEnergy(int amount)
     {
         this.energy -= amount;
+    }
+
+    /**
+     * Changes the player's energy level to a given amount.
+     * @param energy The amount to set the player's energy level to.
+     */
+    public void setEnergy(int energy)
+    {
+        this.energy = energy;
     }
 
     /**
