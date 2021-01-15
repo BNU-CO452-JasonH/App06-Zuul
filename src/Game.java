@@ -95,7 +95,6 @@ public class Game
         System.out.println("The game has now been exited. Thank you for playing! Goodbye!");
     }
 
-    // TODO: Change the introductory message so it actually introduces the game, rather saying it's just boring.
     /**
      * Print out the opening message for the player.
      */
@@ -103,7 +102,9 @@ public class Game
     {
         System.out.println();
         System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("This adventure game will take you through a university campus setting.");
+        System.out.println("Wandering lost, trying to find your way around, navigate through the campus, exploring" +
+                "each room and locating items to increase your score and make your way out of it.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         player.printStatus();
@@ -274,6 +275,13 @@ public class Game
             if (consumables.containsKey(roomItem))
             {
                 player.increaseEnergy(consumables.get(roomItem));
+
+                // If the player's energy level surpasses 100 after taking the consumable, set it to the max threshold.
+                if (player.getEnergy() > 100)
+                {
+                    player.setEnergy(100);
+                }
+
                 System.out.println("Energy increased by " + consumables.get(roomItem)
                         + ". Energy remaining: " + player.getEnergy());
             }
