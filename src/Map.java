@@ -2,11 +2,12 @@
  * The Map class stores an interconnected set of rooms used for the Zuul game.
  *
  * @author Jason Huggins
- * @version 15/01/2021
+ * @version 22/01/2021
  */
 public class Map
 {
-    private Room startRoom;
+    private Room startRoom, outside, theater, pub, lab, office, library, field, shop,
+            studio, classroom, bathroom, gym, reception, cafeteria;
 
     /**
      * Constructor for a Map object.
@@ -17,14 +18,10 @@ public class Map
     }
 
     /**
-     * Create all the rooms with descriptions and items, then link their exits together.
+     * Create all the rooms with descriptions and items.
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office, library, field, shop,
-                studio, classroom, bathroom, gym, reception, cafeteria;
-
-        // create the rooms
         outside = new Room(1, "outside", Items.BACKPACK);
         theater = new Room(2, "theater", Items.COIN);
         pub = new Room(3, "pub", Items.WATCH);
@@ -41,7 +38,15 @@ public class Map
         reception = new Room(13, "reception", Items.COLA);
         cafeteria = new Room(14, "cafeteria", Items.BISCUIT);
 
-        // initialise room descriptions
+        startRoom = outside;  // start game outside
+        setDescriptions();
+    }
+
+    /**
+     * Initialises the descriptions for each room.
+     */
+    private void setDescriptions()
+    {
         outside.setDescription("outside the main entrance of the university");
         theater.setDescription("in a lecture theater");
         pub.setDescription("in the campus pub");
@@ -57,7 +62,14 @@ public class Map
         reception.setDescription("in the university reception area");
         cafeteria.setDescription("in the cafeteria");
 
-        // initialise room exits
+        setExits();
+    }
+
+    /**
+     * Initialises the exits for each room.
+     */
+    private void setExits()
+    {
         outside.setExit("north", field);
         outside.setExit("east", reception);
         outside.setExit("south", lab);
@@ -97,8 +109,6 @@ public class Map
         studio.setExit("east", classroom);
 
         gym.setExit("south", field);
-
-        startRoom = outside;  // start game outside
     }
 
     /**
